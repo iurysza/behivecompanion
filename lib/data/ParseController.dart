@@ -17,7 +17,6 @@ class ParseController {
   }
 
   Future logIn() async {
-    print("first");
 
     final Map<String, String> params = <String, String>{
       'countryCode': '55',
@@ -25,7 +24,6 @@ class ParseController {
       'verificationCode': '4692'
     };
 
-    print("second");
 
     var firstResponse =
         await ParseCloudFunction('phoneAuthValidateCodeAndLogIn')

@@ -1,5 +1,5 @@
-import 'package:behivecompanion/HiveList.dart';
-import 'package:behivecompanion/HiveListModel.dart';
+import 'package:behivecompanion/presentation/HiveList.dart';
+import 'package:behivecompanion/presentation/HiveListModel.dart';
 import 'package:behivecompanion/data/ParseController.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

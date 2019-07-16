@@ -1,4 +1,4 @@
-import 'package:behivecompanion/HiveList.dart';
+import 'package:behivecompanion/presentation/HiveList.dart';
 import 'package:flutter/material.dart';
 
 class HiveListModel extends ChangeNotifier {
