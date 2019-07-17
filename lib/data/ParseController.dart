@@ -10,8 +10,7 @@ class ParseController {
     await Parse().initialize(_apiKey, _url,
         clientKey: _clientKey, // Required for some setups
         debug: true, // When enabled, prints logs to console
-        coreStore: await CoreStoreSharedPrefsImp
-            .getInstance()); // Will use SharedPreferences instead of Sembast as an internal DB
+        coreStore: await CoreStoreSharedPrefsImp.getInstance()); // Will use SharedPreferences instead of Sembast as an internal DB
 
     return ParseUser.currentUser();
   }

@@ -12,66 +12,57 @@ class HiveList extends StatelessWidget {
     return Consumer<HiveListModel>(
       builder: (context, listModel, _) => ListView.builder(
             itemBuilder: (context, position) {
-              return GestureDetector(
-                onTap: () => {
-//                      Scaffold.of(context).showSnackBar(snackBar),
-                    },
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+              return Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
+                            child: Text(
+                              listModel.getItemAt(position).name,
+                              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
+                            child: Text(
+                              listModel.getItemAt(position).lastEvent,
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  12.0, 12.0, 12.0, 6.0),
-                              child: Text(
-                                listModel.getItemAt(position).name,
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                            Text(
+                              listModel.getItemAt(position).eventTime,
+                              style: TextStyle(color: Colors.grey),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  12.0, 6.0, 12.0, 12.0),
-                              child: Text(
-                                listModel.getItemAt(position).lastEvent,
-                                style: TextStyle(fontSize: 18.0),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.star_border,
+                                size: 35.0,
+                                color: Colors.grey,
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                listModel.getItemAt(position).eventTime,
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.star_border,
-                                  size: 35.0,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      height: 2.0,
-                      color: Colors.grey,
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 2.0,
+                    color: Colors.grey,
+                  )
+                ],
               );
             },
             itemCount: listModel.itemList.length,

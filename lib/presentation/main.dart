@@ -1,11 +1,14 @@
-import 'package:behivecompanion/presentation/HiveList.dart';
-import 'package:behivecompanion/presentation/HiveListModel.dart';
 import 'package:behivecompanion/data/ParseController.dart';
+import 'package:behivecompanion/di/service_locator.dart';
+import 'package:behivecompanion/presentation/HiveListModel.dart';
+import 'package:behivecompanion/presentation/Login.dart';
+import 'package:behivecompanion/presentation/LoginVM.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  var parseController = ParseController();
+  setup();
+  var parseController = serviceLocator<ParseController>();
   parseController.initializeParse().then(( data) {
     print("Parse initialization: $data");
   }).catchError((error) {
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: ChangeNotifierProvider(
-          builder: (context) => HiveListModel(),
+          builder: (context) => LoginVM(),
           child: MyHomePage(title: 'Companion')),
     );
   }
@@ -39,18 +42,11 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<HiveListModel>(context);
-    return Consumer<HiveListModel>(
+    var provider = Provider.of<LoginVM>(context);
+    return Consumer<LoginVM>(
       builder: (context, listModel, _) => Scaffold(
             appBar: AppBar(title: Text(this.title)),
-            body: HiveList(),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                provider.addItem();
-              },
-              tooltip: 'Increment',
-              child: Icon(Icons.add),
-            ), // This trailing comma makes auto-formatting nicer for build methods.
+            body: LoginView(), // This trailing comma makes auto-formatting nicer for build methods.
           ),
     );
   }

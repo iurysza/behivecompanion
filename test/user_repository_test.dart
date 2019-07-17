@@ -1,9 +1,9 @@
-import 'package:behivecompanion/data/repositories/UserRepository.dart';
+import 'package:behivecompanion/data/repositories/AuthRepository.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-class MockUserRepo extends Mock implements UserRepository {}
+class MockUserRepo extends Mock implements AuthRepository {}
 
 void main() {
   test("Get SmsCode returns success", () async {

@@ -1,9 +1,9 @@
-import 'package:behivecompanion/data/repositories/UserRepository.dart';
+import 'package:behivecompanion/data/repositories/AuthRepository.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
 import 'package:behivecompanion/data/repositories/utils/parse_utils.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-class UserRepositoryImpl extends UserRepository {
+class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<ApiResponse> requestSmsCode(String countryCode, String phoneNumber) async {
     final params = <String, String>{'countryCode': countryCode, 'phoneNumber': phoneNumber};
