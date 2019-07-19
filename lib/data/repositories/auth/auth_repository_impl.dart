@@ -1,4 +1,5 @@
-import 'package:behivecompanion/data/repositories/AuthRepository.dart';
+import 'package:behivecompanion/data/repositories/auth/auth_repository.dart';
+import 'package:behivecompanion/data/repositories/utils/api_error.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
 import 'package:behivecompanion/data/repositories/utils/parse_utils.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
@@ -7,13 +8,17 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<ApiResponse> requestSmsCode(String countryCode, String phoneNumber) async {
     final params = <String, String>{'countryCode': countryCode, 'phoneNumber': phoneNumber};
+    try{
     final response = await ParseCloudFunction('phoneAuthSendCode').execute(parameters: params);
     return getApiResponse(response);
+    }catch(error) {
+      return ApiResponse(error:ApiError(400,"errr",true,""));
+    }
   }
 
   @override
   Future<ApiResponse> loginWithPhone(String countryCode, String phoneNumber, String code) async {
-    final params = <String, String>{
+    final Map<String, String> params = <String, String>{
       'countryCode': countryCode,
       'phoneNumber': phoneNumber,
       'verificationCode': code

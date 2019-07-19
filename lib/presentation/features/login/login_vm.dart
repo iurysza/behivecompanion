@@ -1,24 +1,36 @@
-import 'package:behivecompanion/data/repositories/AuthRepository.dart';
-import 'package:behivecompanion/di/service_locator.dart';
+import 'package:behivecompanion/data/repositories/auth/auth_repository.dart';
+import 'package:behivecompanion/presentation/base/base_model.dart';
 import 'package:flutter/cupertino.dart';
 
 enum ViewState {
   Idle,
   Busy,
+  LoggedIn,
   Error,
 }
 
-class LoginVM extends ChangeNotifier {
-  final AuthRepository _authRepository = serviceLocator<AuthRepository>();
+class LoginVM extends BaseModel {
+  final AuthRepository _authRepository;
+
+  LoginVM({@required AuthRepository authRepository})
+      : smsCodeSent = false,
+        _authRepository = authRepository;
 
   String countryCode;
+
   String phoneNumber;
+
+
+  String _smsCode;
+  String get smsCode => _smsCode;
+
+  set smsCode(String smsCode) {
+    _smsCode = smsCode;
+  }
 
   ViewState _state = ViewState.Idle;
 
-  bool smsCodeSent = false;
-
-  String smsCode;
+  bool smsCodeSent;
 
   ViewState get state => _state;
 
@@ -28,7 +40,7 @@ class LoginVM extends ChangeNotifier {
   }
 
   bool wasCodeSent() {
-    return smsCodeSent != null && smsCodeSent;
+    return smsCodeSent;
   }
 
   Future<bool> requestSms() async {
@@ -49,8 +61,9 @@ class LoginVM extends ChangeNotifier {
     var response = await _authRepository.loginWithPhone(countryCode, phoneNumber, smsCode);
     if (response.isError()) {
       setState(ViewState.Error);
+      return false;
     } else {
-      setState(ViewState.Idle);
+      setState(ViewState.LoggedIn);
     }
     return true;
   }

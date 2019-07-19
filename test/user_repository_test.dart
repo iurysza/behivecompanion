@@ -1,4 +1,4 @@
-import 'package:behivecompanion/data/repositories/AuthRepository.dart';
+import 'package:behivecompanion/data/repositories/auth/auth_repository.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -11,7 +11,7 @@ void main() {
 
     final mockUserRepo = MockUserRepo();
 
-    var apiResponse = ApiResponse(["result"], null);
+    var apiResponse = ApiResponse(results: ["result"], error: null);
     when(mockUserRepo.requestSmsCode("", "")).thenAnswer((_) async => Future.value(apiResponse));
     var response = await mockUserRepo.requestSmsCode("", "");
 
