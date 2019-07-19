@@ -7,10 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
-  final style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
   @override
   Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.title;
     return BaseWidget<LoginVM>(
         model: LoginVM(authRepository: Provider.of<AuthRepositoryImpl>(context)),
         builder: (context, model, child) {

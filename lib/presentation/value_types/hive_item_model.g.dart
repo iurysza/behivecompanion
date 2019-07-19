@@ -9,11 +9,13 @@ part of 'hive_item_model.dart';
 class _$HiveItemModel extends HiveItemModel {
   @override
   final String name;
+  @override
+  final String pictureUrl;
 
   factory _$HiveItemModel([void Function(HiveItemModelBuilder) updates]) =>
       (new HiveItemModelBuilder()..update(updates)).build();
 
-  _$HiveItemModel._({this.name}) : super._() {
+  _$HiveItemModel._({this.name, this.pictureUrl}) : super._() {
     if (name == null) {
       throw new BuiltValueNullFieldError('HiveItemModel', 'name');
     }
@@ -29,17 +31,21 @@ class _$HiveItemModel extends HiveItemModel {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is HiveItemModel && name == other.name;
+    return other is HiveItemModel &&
+        name == other.name &&
+        pictureUrl == other.pictureUrl;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, name.hashCode));
+    return $jf($jc($jc(0, name.hashCode), pictureUrl.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('HiveItemModel')..add('name', name))
+    return (newBuiltValueToStringHelper('HiveItemModel')
+          ..add('name', name)
+          ..add('pictureUrl', pictureUrl))
         .toString();
   }
 }
@@ -52,11 +58,16 @@ class HiveItemModelBuilder
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
+  String _pictureUrl;
+  String get pictureUrl => _$this._pictureUrl;
+  set pictureUrl(String pictureUrl) => _$this._pictureUrl = pictureUrl;
+
   HiveItemModelBuilder();
 
   HiveItemModelBuilder get _$this {
     if (_$v != null) {
       _name = _$v.name;
+      _pictureUrl = _$v.pictureUrl;
       _$v = null;
     }
     return this;
@@ -77,7 +88,8 @@ class HiveItemModelBuilder
 
   @override
   _$HiveItemModel build() {
-    final _$result = _$v ?? new _$HiveItemModel._(name: name);
+    final _$result =
+        _$v ?? new _$HiveItemModel._(name: name, pictureUrl: pictureUrl);
     replace(_$result);
     return _$result;
   }

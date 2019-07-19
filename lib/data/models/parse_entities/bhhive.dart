@@ -19,7 +19,10 @@ class BHive extends ParseObject implements ParseCloneable {
   //endregion
 
   //region AVATAR
-  String get avatarUrl => get<String>(keyAvatarUrl);
+  String get avatarUrl {
+    final picture = get<ParseFile>(keyAvatarUrl);
+    return (picture as ParseFile)?.url??"";
+  }
 
   set avatarUrl(String avatarUrl) => set<String>(keyAvatarUrl, avatarUrl);
 //endregion

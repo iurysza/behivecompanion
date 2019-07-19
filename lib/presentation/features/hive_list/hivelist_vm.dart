@@ -12,9 +12,10 @@ class HiveListVM extends BaseModel {
   void getHiveList() async {
     final apiResponse = await _hiveRepository.getFollowedHives();
     if (!apiResponse.isError()) {
-      this.itemList = apiResponse
-              .results
-              .map((bhHive) => HiveItemModel((b) => b..name = bhHive.name))
+      this.itemList = apiResponse.results
+          .map((bhHive) => HiveItemModel((b) => b
+            ..name = bhHive.name
+            ..pictureUrl = bhHive.avatarUrl))
           .toList();
     }
     notifyListeners();
