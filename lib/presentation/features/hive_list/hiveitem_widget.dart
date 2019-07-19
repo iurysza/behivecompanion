@@ -5,19 +5,24 @@ class HiveItemWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String pictureUrl;
+  final Function onActionClick;
+  final Function onItemClick;
 
   HiveItemWidget({
     Key key,
     this.title,
     this.subtitle,
     this.pictureUrl,
+    this.onActionClick,
+    this.onItemClick,
+
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("Item Clicked");
+        onItemClick();
       },
       child: Column(
         children: <Widget>[
