@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HiveItemWidget extends StatelessWidget {
+class ListItemWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String pictureUrl;
   final Function onActionClick;
   final Function onItemClick;
 
-  HiveItemWidget({
+  ListItemWidget({
     Key key,
     this.title,
     this.subtitle,
@@ -48,11 +48,11 @@ class HiveItemWidget extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.subhead,
                       ),
                       Text(
                         subtitle,
-                        style: Theme.of(context).textTheme.body2,
+                        style: Theme.of(context).textTheme.body1,
                       ),
                     ],
                   ),

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 Future main() async {
   ServiceContainer().injectDependencies();
-  runApp(MyApp(RoutePaths.Login));
+  runApp(MyApp(RoutePaths.Onboarding));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       providers: providers,
       child: MaterialApp(
         title: 'Behive Companion',
-        theme: ThemeUtils.getDefaultAppTheme(),
+        theme: ThemeUtils.getDefaultAppTheme(context),
         initialRoute: initialScreen,
         onGenerateRoute: Router.generateRoute,
       ),

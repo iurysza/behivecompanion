@@ -1,7 +1,7 @@
 import 'package:behivecompanion/data/repositories/hives/hive_repositoryimpl.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
-import 'package:behivecompanion/presentation/features/hive_list/hiveitem_widget.dart';
+import 'package:behivecompanion/presentation/custom_widgets/listitem_widget.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class HiveListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeUtils.getDefaultAppTheme(),
+      theme: ThemeUtils.getDefaultAppTheme(context),
       home: Scaffold(
         appBar: AppBar(title: const Text('Hive List')),
         body: Container(
@@ -23,7 +23,7 @@ class HiveListView extends StatelessWidget {
                 itemCount: viewModel.itemList.length,
                 itemBuilder: (context, position) {
                   final item = viewModel.getItemAt(position);
-                  return HiveItemWidget(
+                  return ListItemWidget(
                     title: item.name,
                     subtitle: item.name,
                     pictureUrl: item.pictureUrl ?? "",

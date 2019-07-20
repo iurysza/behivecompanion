@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.15.8
   get_it: ^1.0.3
   test: ^1.5.3
+  flutter_svg: ^0.13.1
   built_collection: '>=2.0.0 <5.0.0'
   built_value: '>=5.5.5 <7.0.0'
   mockito: ^4.1.0
@@ -56,6 +57,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/placeholder.png
+    - assets/svgs/banner_construction.svg
+    - assets/svgs/logo.svg
+    - assets/svgs/banner_drivers.svg
+    - assets/svgs/banner_recommendations.svg
+    - assets/svgs/banner_schools.svg
 
 
 
