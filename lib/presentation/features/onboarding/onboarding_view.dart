@@ -18,7 +18,7 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    SystemUI.setStatusBarColor(Colors.white);
+//    SystemUI.setStatusBarColor(Colors.white);
     var bannerList = BannerModel.defaultBanners();
     return Stack(
       children: [

@@ -9,11 +9,11 @@ class SystemUI {
     ));
   }
 
-
   static void setWhiteStatusBar() {
     setStatusBarColor(Colors.white);
   }
+
   static void setDefaultStatusBar() {
-    setStatusBarColor(Colors.white);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   built_value: '>=5.5.5 <7.0.0'
   mockito: ^4.1.0
   country_code_picker: ^1.1.7
+  flutter_masked_text: ^0.8.0
   provider: ^3.0.0+1
   parse_server_sdk: ^1.0.22
   flutter:

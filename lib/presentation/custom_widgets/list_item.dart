@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ListItemWidget extends StatelessWidget {
+class ListItem extends StatelessWidget {
   final String title;
   final String subtitle;
   final String pictureUrl;
   final Function onActionClick;
   final Function onItemClick;
 
-  ListItemWidget({
+  ListItem({
     Key key,
     this.title,
     this.subtitle,

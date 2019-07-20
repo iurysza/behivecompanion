@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ThemeUtils {
   static ThemeData getDefaultAppTheme(BuildContext context) {
     final ThemeData base = ThemeData.light();
-    final bhBlue = HexColor("#FFFEDBD0");
+    final bhBlue = HexColor("#2484BA");
     final bhPink = HexColor("#EB246F");
     const surfaceWhite = const Color(0xFFFFFBFA);
     const backgroundWhite = Colors.white;
@@ -21,6 +21,9 @@ class ThemeUtils {
         cardColor: surfaceWhite,
         textSelectionColor: bhBlue,
         errorColor: error,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         textTheme: TextTheme(
           display1: TextStyle(fontSize: 38.0, fontWeight: FontWeight.bold, color: Colors.black87),
           headline: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.black45),

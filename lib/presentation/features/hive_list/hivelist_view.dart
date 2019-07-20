@@ -1,7 +1,7 @@
 import 'package:behivecompanion/data/repositories/hives/hive_repositoryimpl.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
-import 'package:behivecompanion/presentation/custom_widgets/listitem_widget.dart';
+import 'package:behivecompanion/presentation/custom_widgets/list_item.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class HiveListView extends StatelessWidget {
                 itemCount: viewModel.itemList.length,
                 itemBuilder: (context, position) {
                   final item = viewModel.getItemAt(position);
-                  return ListItemWidget(
+                  return ListItem(
                     title: item.name,
                     subtitle: item.name,
                     pictureUrl: item.pictureUrl ?? "",
