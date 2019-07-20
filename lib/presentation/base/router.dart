@@ -1,7 +1,6 @@
 import 'package:behivecompanion/data/services/services_controller.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_view.dart';
 import 'package:behivecompanion/presentation/features/login/login_view.dart';
-import 'package:behivecompanion/shared/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -33,4 +32,9 @@ class Router {
                 ));
     }
   }
+}
+
+class RoutePaths {
+  static const String Login = 'login';
+  static const String HiveList = 'hivelist';
 }

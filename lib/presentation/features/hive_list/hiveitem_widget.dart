@@ -60,9 +60,7 @@ class HiveItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
-            height: 2.0,
-            color: Colors.black,
+          Divider(color: Colors.black,
           ),
         ],
       ),

@@ -1,4 +1,3 @@
-import 'package:behivecompanion/data/models/parse_entities/User.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class ParseController {
@@ -10,12 +9,12 @@ class ParseController {
     await Parse().initialize(_apiKey, _url,
         clientKey: _clientKey, // Required for some setups
         debug: true, // When enabled, prints logs to console
-        autoSendSessionId:true,
+        autoSendSessionId: true,
         coreStore: await CoreStoreSharedPrefsImp
             .getInstance()); // Will use SharedPreferences instead of Sembast as an internal DB
   }
 
-  Future<bool> isLoggedIn() async{
-    return await ParseUser.currentUser() !=null;
+  Future<bool> isLoggedIn() async {
+    return await ParseUser.currentUser() != null;
   }
 }

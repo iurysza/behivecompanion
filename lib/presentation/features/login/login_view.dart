@@ -1,7 +1,7 @@
 import 'package:behivecompanion/data/repositories/auth/auth_repository_impl.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
+import 'package:behivecompanion/presentation/base/router.dart';
 import 'package:behivecompanion/presentation/features/login/login_vm.dart';
-import 'package:behivecompanion/shared/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

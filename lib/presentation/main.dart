@@ -1,4 +1,3 @@
-import 'package:behivecompanion/data/services/services_controller.dart';
 import 'package:behivecompanion/di/provider_setup.dart';
 import 'package:behivecompanion/di/service_locator.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
@@ -7,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
-  final serviceLocator = injectDependencies();
-  final initialScreen = await Router.getInitialRoute(serviceLocator<ServicesController>());
-
-  runApp(MyApp(initialScreen));
+  ServiceContainer().injectDependencies();
+  runApp(MyApp(RoutePaths.Login));
 }
 
 class MyApp extends StatelessWidget {
