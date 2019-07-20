@@ -1,4 +1,8 @@
 import 'package:behivecompanion/helper/assets_utils.dart';
+import 'package:behivecompanion/helper/system_ui_utils.dart';
+import 'package:behivecompanion/presentation/base/router.dart';
+import 'package:behivecompanion/presentation/custom_widgets/large_button.dart';
+import 'package:behivecompanion/presentation/custom_widgets/screen_title.dart';
 import 'package:behivecompanion/presentation/features/onboarding/onboarding_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +17,14 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var defaultBanners = BannerModel.defaultBanners();
+    
+    SystemUI.setStatusBarColor(Colors.white);
+    var bannerList = BannerModel.defaultBanners();
     return Stack(
       children: [
         PageView.builder(
-          itemBuilder: (context, position) {
-            return BannerWidget(model: defaultBanners[position]);
-          },
-          itemCount: defaultBanners.length,
+          itemBuilder: (context, pos) => BannerWidget(model: bannerList[pos]),
+          itemCount: bannerList.length,
         ),
         Positioned(
             height: 50,
@@ -35,17 +39,9 @@ class OnboardingView extends StatelessWidget {
           bottom: 30,
           left: 50,
           right: 50,
-          child: Container(
-            child: MaterialButton(
-                color: Colors.white,
-                height: 60,
-                textTheme: ButtonTextTheme.normal,
-                shape: StadiumBorder(side: BorderSide.none),
-                onPressed: () => {},
-                child: new Text(
-                  'Vamos lá!',
-                  style: Theme.of(context).textTheme.display1.copyWith(fontSize: 24.0),
-                )),
+          child: new LargeButton(
+            text: "Vamos lá!",
+            onPressed: () => Navigator.pushNamed(context, RoutePaths.RequestCode),
           ),
         ),
       ],
@@ -81,18 +77,9 @@ class BannerWidget extends StatelessWidget {
                 top: 250,
                 left: 16,
                 right: 16,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      model.title,
-                      style: Theme.of(context).textTheme.display1,
-                    ),
-                    Text(
-                      model.subtitle,
-                      style: Theme.of(context).textTheme.headline,
-                    ),
-                  ],
+                child: ScreenHeaderWidget(
+                  title: model.title,
+                  subtitle: model.subtitle,
                 ),
               ),
             ],
