@@ -14,17 +14,18 @@ class User extends ParseUser implements ParseCloneable {
   static const String keyName = 'name';
   static const String keyUserName = 'username';
 
-
   //region NAME
   String get name => get<String>(keyName);
 
   set name(String name) => set<String>(keyName, name);
+
   //endregion
 
   //region PHONE_NUMBER
   String get phoneNumber => get<String>(keyName);
 
   set phoneNumber(String phoneNumber) => set<String>(keyPhoneNumber, phoneNumber);
+
   //endregion
 
   //region AVATAR

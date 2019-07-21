@@ -1,13 +1,13 @@
 import 'package:behivecompanion/data/repositories/hives/hive_repository.dart';
 import 'package:behivecompanion/presentation/base/base_model.dart';
-import 'package:behivecompanion/presentation/value_types/hive_item_model.dart';
+import 'package:behivecompanion/presentation/features/hive_list/hive_item_model.dart';
 import 'package:meta/meta.dart';
 
-class HiveListVM extends BaseModel {
+class HiveListBloc extends BaseModel {
   List<HiveItemModel> itemList = [];
   HiveRepository _hiveRepository;
 
-  HiveListVM({@required HiveRepository hiveRepository}) : _hiveRepository = hiveRepository;
+  HiveListBloc({@required HiveRepository hiveRepository}) : _hiveRepository = hiveRepository;
 
   void getHiveList() async {
     final apiResponse = await _hiveRepository.getFollowedHives();

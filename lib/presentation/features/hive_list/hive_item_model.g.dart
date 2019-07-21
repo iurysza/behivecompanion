@@ -31,9 +31,7 @@ class _$HiveItemModel extends HiveItemModel {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is HiveItemModel &&
-        name == other.name &&
-        pictureUrl == other.pictureUrl;
+    return other is HiveItemModel && name == other.name && pictureUrl == other.pictureUrl;
   }
 
   @override
@@ -50,16 +48,19 @@ class _$HiveItemModel extends HiveItemModel {
   }
 }
 
-class HiveItemModelBuilder
-    implements Builder<HiveItemModel, HiveItemModelBuilder> {
+class HiveItemModelBuilder implements Builder<HiveItemModel, HiveItemModelBuilder> {
   _$HiveItemModel _$v;
 
   String _name;
+
   String get name => _$this._name;
+
   set name(String name) => _$this._name = name;
 
   String _pictureUrl;
+
   String get pictureUrl => _$this._pictureUrl;
+
   set pictureUrl(String pictureUrl) => _$this._pictureUrl = pictureUrl;
 
   HiveItemModelBuilder();
@@ -88,8 +89,7 @@ class HiveItemModelBuilder
 
   @override
   _$HiveItemModel build() {
-    final _$result =
-        _$v ?? new _$HiveItemModel._(name: name, pictureUrl: pictureUrl);
+    final _$result = _$v ?? new _$HiveItemModel._(name: name, pictureUrl: pictureUrl);
     replace(_$result);
     return _$result;
   }

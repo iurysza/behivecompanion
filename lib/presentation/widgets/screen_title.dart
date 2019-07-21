@@ -20,7 +20,7 @@ class ScreenHeaderWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.display1,
         ),
         Padding(
-          padding: const EdgeInsets.only(top:8.0),
+          padding: const EdgeInsets.only(top: 8.0),
           child: Text(
             subtitle,
             style: Theme.of(context).textTheme.headline,

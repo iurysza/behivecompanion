@@ -1,151 +1,102 @@
 import 'package:behivecompanion/data/repositories/auth/auth_repository_impl.dart';
+import 'package:behivecompanion/helper/text_mask.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
 import 'package:behivecompanion/presentation/base/router.dart';
-import 'package:behivecompanion/presentation/features/login/login_vm.dart';
+import 'package:behivecompanion/presentation/features/login/login_bloc.dart';
+import 'package:behivecompanion/presentation/widgets/country_code_picker.dart';
+import 'package:behivecompanion/presentation/widgets/large_button.dart';
+import 'package:behivecompanion/presentation/widgets/larget_text_field.dart';
+import 'package:behivecompanion/presentation/widgets/screen_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.title;
-    return BaseWidget<LoginVM>(
-        model: LoginVM(authRepository: Provider.of<AuthRepositoryImpl>(context)),
-        builder: (context, model, child) {
-          return Center(
-              child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: Scaffold(
-                body: Column(
+    return BaseWidget<LoginBloc>(
+        model: LoginBloc(authRepository: Provider.of<AuthRepositoryImpl>(context)),
+        builder: (context, bloc, child) => Scaffold(
+              appBar: AppBar(
+                iconTheme: IconThemeData(
+                  color: Colors.black, //change your color here
+                ),
+                title: const Text(''),
+                backgroundColor: Colors.white,
+                elevation: 0,
+              ),
+              body: Container(
+                color: Colors.white,
+                child: Column(
                   children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: 80,
-                          child: TextField(
-                            style: style,
-                            onChanged: (text) {
-                              model.onCountryCodeChanged(text);
-                            },
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                                labelText: "Code",
-                                labelStyle:
-                                    const TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
-                                border:
-                                    OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-                          ),
-                        ),
-                        Container(
-                            padding: const EdgeInsets.all(8.0),
-                            width: 240,
-                            child: TextField(
-                              style: style,
-                              onChanged: (text) {
-                                model.onPhoneChanged(text);
-                              },
-                              decoration: InputDecoration(
-                                  labelText: "Phone Number",
-                                  labelStyle:
-                                      const TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(32.0))),
-                            )),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                      child: ScreenHeaderWidget(
+                        title: bloc.vm.title,
+                        subtitle: bloc.vm.subTitle,
+                      ),
                     ),
                     Padding(
-                        padding: const EdgeInsets.all(32.0),
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: getProgress(model, style, context),
+                      padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+                      child: Column(
+                        children: <Widget>[
+                          if (bloc.state == ViewState.CodeRequested)
+                            PinPut(
+                              fieldsCount: 4,
+                              onSubmit: (String pin) => bloc.onSmsCodeChanged(pin),
+                            )
+                          else if (bloc.state != ViewState.Busy)
+                            Row(
+                              children: <Widget>[
+                                CountryCodePicker(
+                                  onChanged: (country) => bloc.onCountryCodeChanged(country.code),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: LargeTextField(
+                                      textController:
+                                          MaskedTextController(mask: TextMask.brPhone()),
+                                      autoFocus: true,
+                                      labelText: bloc.vm.textLabel,
+                                      onChanged: (text) => bloc.onPhoneChanged(text),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Material(
-                                key: Key("materialBtn"),
-                                elevation: 5.0,
-                                borderRadius: BorderRadius.circular(30.0),
-                                color: Color(0xff01A0C7),
-                                child: MaterialButton(
-                                    minWidth: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                                    onPressed: () async {
-                                      if (model.wasCodeSent()) {
-                                        if (model.state == ViewState.LoggedIn ||
-                                            await model.loginWithPhone()) {
-                                          Navigator.pushNamed(context, RoutePaths.HiveList);
-                                        }
-                                      } else {
-                                        model.requestSms();
-                                      }
-                                    },
-                                    child: Text(getLogin(model),
-                                        textAlign: TextAlign.center,
-                                        style: style.copyWith(
-                                            color: Colors.white, fontWeight: FontWeight.bold)))),
-                          ],
-                        ))
+                          if (bloc.state == ViewState.Busy)
+                            Container(
+                                padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0,
+                                ))
+                          else
+                            Container(
+                              padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+                              width: double.infinity,
+                              child: LargeButton(
+                                text: bloc.vm.btnText,
+                                onPressed: () async {
+                                  if (bloc.state != ViewState.CodeRequested)
+                                    bloc.requestCode();
+                                  else {
+                                    if (await bloc.loginWithPhone()) {
+                                      Navigator.pushNamed(context, RoutePaths.HiveList);
+                                    }
+                                  }
+                                },
+                              ),
+                            )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
-            ),
-          ));
-        });
-  }
-}
-
-Widget getProgress(LoginVM loginVm, TextStyle style, BuildContext context) {
-  if (loginVm.state == ViewState.Busy) {
-    return CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation(Colors.blue), strokeWidth: 5.0);
-  } else {
-    if (loginVm.state == ViewState.Error) {
-      return Material(
-          key: Key("materialBtn"),
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(30.0),
-          color: Color(0xff01A0C7),
-          child: MaterialButton(
-              minWidth: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              onPressed: () {
-                if (loginVm.wasCodeSent()) {
-                  loginVm.loginWithPhone();
-                } else {
-                  loginVm.requestSms();
-                }
-              },
-              child: Text("Retry",
-                  textAlign: TextAlign.center,
-                  style: style.copyWith(color: Colors.white, fontWeight: FontWeight.bold))));
-    }
-    if (!loginVm.wasCodeSent() || (loginVm.state == ViewState.LoggedIn)) {
-      return SizedBox.shrink();
-    } else {
-      return TextField(
-        style: style,
-        onChanged: (text) {
-          loginVm.onSmsCodeChanged(text);
-        },
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            labelText: "Sms code",
-            labelStyle: const TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-      );
-    }
-  }
-}
-
-String getLogin(LoginVM loginVm) {
-  if (loginVm.wasCodeSent()) {
-    return "Login";
-  } else {
-    return "Request Sms Code";
+            ));
   }
 }

@@ -1,9 +1,8 @@
 import 'package:behivecompanion/helper/assets_utils.dart';
-import 'package:behivecompanion/helper/system_ui_utils.dart';
 import 'package:behivecompanion/presentation/base/router.dart';
-import 'package:behivecompanion/presentation/custom_widgets/large_button.dart';
-import 'package:behivecompanion/presentation/custom_widgets/screen_title.dart';
 import 'package:behivecompanion/presentation/features/onboarding/onboarding_vm.dart';
+import 'package:behivecompanion/presentation/widgets/large_button.dart';
+import 'package:behivecompanion/presentation/widgets/screen_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,7 +16,6 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
 //    SystemUI.setStatusBarColor(Colors.white);
     var bannerList = BannerModel.defaultBanners();
     return Stack(
@@ -41,7 +39,7 @@ class OnboardingView extends StatelessWidget {
           right: 50,
           child: new LargeButton(
             text: "Vamos lá!",
-            onPressed: () => Navigator.pushNamed(context, RoutePaths.RequestCode),
+            onPressed: () => Navigator.pushNamed(context, RoutePaths.Login),
           ),
         ),
       ],
@@ -64,13 +62,17 @@ class BannerWidget extends StatelessWidget {
         Expanded(
           child: Stack(
             children: <Widget>[
-              SvgPicture.asset(svgPath(model.svgUri),
-                  fit: BoxFit.cover,
-                  height: double.infinity,
-                  width: double.infinity,
-                  alignment: Alignment.center),
+              SvgPicture.asset(
+                svgPath(model.svgUri),
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
               Container(
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.9)),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.9),
+                ),
               ),
               Positioned(
                 height: 200,

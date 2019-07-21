@@ -1,8 +1,8 @@
 import 'package:behivecompanion/data/repositories/hives/hive_repositoryimpl.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
-import 'package:behivecompanion/presentation/custom_widgets/list_item.dart';
-import 'package:behivecompanion/presentation/features/hive_list/hivelist_vm.dart';
+import 'package:behivecompanion/presentation/features/hive_list/hivelist_bloc.dart';
+import 'package:behivecompanion/presentation/widgets/list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +15,9 @@ class HiveListView extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text('Hive List')),
         body: Container(
-          child: BaseWidget<HiveListVM>(
+          child: BaseWidget<HiveListBloc>(
             onModelReady: (viewModel) => viewModel.getHiveList(),
-            model: HiveListVM(hiveRepository: Provider.of<HiveRepositoryImpl>(context)),
+            model: HiveListBloc(hiveRepository: Provider.of<HiveRepositoryImpl>(context)),
             builder: (context, viewModel, child) {
               return ListView.builder(
                 itemCount: viewModel.itemList.length,

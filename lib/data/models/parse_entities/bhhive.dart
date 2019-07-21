@@ -11,17 +11,17 @@ class BHive extends ParseObject implements ParseCloneable {
   static const String keyAvatarUrl = 'picture';
   static const String keyName = 'name';
 
-
   //region NAME
   String get name => get<String>(keyName);
 
   set name(String name) => set<String>(keyName, name);
+
   //endregion
 
   //region AVATAR
   String get avatarUrl {
     final picture = get<ParseFile>(keyAvatarUrl);
-    return (picture as ParseFile)?.url??"";
+    return (picture as ParseFile)?.url ?? "";
   }
 
   set avatarUrl(String avatarUrl) => set<String>(keyAvatarUrl, avatarUrl);

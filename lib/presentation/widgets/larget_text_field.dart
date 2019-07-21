@@ -20,7 +20,6 @@ class LargeTextField extends StatelessWidget {
       style: theme.body2.copyWith(fontSize: 20.0),
       textInputAction: TextInputAction.send,
       keyboardType: TextInputType.number,
-
       onChanged: onChanged,
       controller: textController,
       decoration: InputDecoration(

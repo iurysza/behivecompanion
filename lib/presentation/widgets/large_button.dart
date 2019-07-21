@@ -8,7 +8,8 @@ class LargeButton extends StatelessWidget {
   const LargeButton({
     Key key,
     this.text,
-    this.color = Colors.white, this.onPressed,
+    this.color = Colors.white,
+    this.onPressed,
   }) : super(key: key);
 
   @override

@@ -39,7 +39,7 @@ ApiError getApiError(ParseError response) {
 }
 
 ApiResponse<T> getResponseOf<T>(List<dynamic> data) {
-  return ApiResponse<T>(results: List.castFrom<dynamic,T>(data), error: null);
+  return ApiResponse<T>(results: List.castFrom<dynamic, T>(data), error: null);
 }
 
 /// Handles a response with a single result object

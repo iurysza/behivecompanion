@@ -15,7 +15,6 @@ class ListItem extends StatelessWidget {
     this.pictureUrl,
     this.onActionClick,
     this.onItemClick,
-
   }) : super(key: key);
 
   @override
@@ -31,7 +30,7 @@ class ListItem extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(right:8.0),
+                  padding: const EdgeInsets.only(right: 8.0),
                   child: ClipOval(
                     child: FadeInImage.assetNetwork(
                       fit: BoxFit.cover,
@@ -60,7 +59,8 @@ class ListItem extends StatelessWidget {
               ],
             ),
           ),
-          Divider(color: Colors.black,
+          Divider(
+            color: Colors.black,
           ),
         ],
       ),
