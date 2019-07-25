@@ -21,12 +21,12 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
 //    SystemUI.setDefaultStatusBar();
     switch (settings.name) {
-      case RoutePaths.HiveList:
-        return MaterialPageRoute(builder: (_) => HiveListView());
       case RoutePaths.Login:
         return MaterialPageRoute(builder: (_) => LoginView());
       case RoutePaths.Onboarding:
         return MaterialPageRoute(builder: (_) => OnboardingView());
+      case RoutePaths.HiveList:
+        return MaterialPageRoute(builder: (_) => HiveListView());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

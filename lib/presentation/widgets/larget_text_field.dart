@@ -5,10 +5,16 @@ class LargeTextField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final MaskedTextController textController;
   final String labelText;
+  final String hintText;
   final bool autoFocus;
 
   const LargeTextField(
-      {Key key, this.textController, this.autoFocus = false, this.onChanged, this.labelText})
+      {Key key,
+      this.textController,
+      this.autoFocus = false,
+      this.onChanged,
+      this.labelText,
+      this.hintText})
       : super(key: key);
 
   @override
@@ -24,7 +30,7 @@ class LargeTextField extends StatelessWidget {
       controller: textController,
       decoration: InputDecoration(
           labelText: labelText,
-          hintText: "(00) 00000-0000",
+          hintText: hintText,
           labelStyle: theme.body1.copyWith(fontSize: 18),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );

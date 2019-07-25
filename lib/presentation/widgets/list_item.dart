@@ -6,7 +6,7 @@ class ListItem extends StatelessWidget {
   final String subtitle;
   final String pictureUrl;
   final Function onActionClick;
-  final Function onItemClick;
+  final Function onTap;
 
   ListItem({
     Key key,
@@ -14,14 +14,32 @@ class ListItem extends StatelessWidget {
     this.subtitle,
     this.pictureUrl,
     this.onActionClick,
-    this.onItemClick,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final pictureKey = Key("pictureKey");
+    var fadeInImage;
+
+    if (pictureUrl == null) {
+      fadeInImage = Image.asset(
+        'assets/images/placeholder.png',
+        key: pictureKey,
+      );
+    } else {
+      fadeInImage = FadeInImage.assetNetwork(
+        fit: BoxFit.cover,
+        width: 50,
+        key: pictureKey,
+        height: 50,
+        placeholder: 'assets/images/placeholder.png',
+        image: pictureUrl,
+      );
+    }
     return InkWell(
       onTap: () {
-        onItemClick();
+        onTap();
       },
       child: Column(
         children: <Widget>[
@@ -32,13 +50,7 @@ class ListItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: ClipOval(
-                    child: FadeInImage.assetNetwork(
-                      fit: BoxFit.cover,
-                      width: 50,
-                      height: 50,
-                      placeholder: 'assets/images/placeholder.png',
-                      image: pictureUrl,
-                    ),
+                    child: fadeInImage,
                   ),
                 ),
                 Expanded(

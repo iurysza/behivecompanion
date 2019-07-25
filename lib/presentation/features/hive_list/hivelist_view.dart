@@ -1,4 +1,3 @@
-import 'package:behivecompanion/data/repositories/hives/hive_repositoryimpl.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_bloc.dart';
@@ -16,8 +15,8 @@ class HiveListView extends StatelessWidget {
         appBar: AppBar(title: const Text('Hive List')),
         body: Container(
           child: BaseWidget<HiveListBloc>(
-            onModelReady: (viewModel) => viewModel.getHiveList(),
-            model: HiveListBloc(hiveRepository: Provider.of<HiveRepositoryImpl>(context)),
+            onBlocReady: (viewModel) => viewModel.getHiveList(),
+            bloc: HiveListBloc(Provider.of(context)),
             builder: (context, viewModel, child) {
               return ListView.builder(
                 itemCount: viewModel.itemList.length,
@@ -27,7 +26,7 @@ class HiveListView extends StatelessWidget {
                     title: item.name,
                     subtitle: item.name,
                     pictureUrl: item.pictureUrl ?? "",
-                    onItemClick: () => Scaffold.of(context)
+                    onTap: () => Scaffold.of(context)
                         .showSnackBar(SnackBar(content: Text("${item.name} clicked"))),
                   );
                 },

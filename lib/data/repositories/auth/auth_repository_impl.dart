@@ -10,29 +10,33 @@ class AuthRepositoryImpl extends AuthRepository {
     final params = <String, String>{'countryCode': countryCode, 'phoneNumber': phoneNumber};
     try {
       final response = await ParseCloudFunction('phoneAuthSendCode').execute(parameters: params);
-      return getApiResponse(response);
+      return buildApiResponse(response);
     } catch (error) {
-      return ApiResponse(error: ApiError(400, "errr", true, ""));
+      return ApiResponse(error: ApiError(500, "Unkown", true, ""));
     }
   }
 
   @override
   Future<ApiResponse> loginWithPhone(String countryCode, String phoneNumber, String code) async {
-    final Map<String, String> params = <String, String>{
-      'countryCode': countryCode,
-      'phoneNumber': phoneNumber,
-      'verificationCode': code
-    };
+    try {
+      final Map<String, String> params = <String, String>{
+        'countryCode': countryCode,
+        'phoneNumber': phoneNumber,
+        'verificationCode': code
+      };
 
-    final response =
-        await ParseCloudFunction('phoneAuthValidateCodeAndLogIn').execute(parameters: params);
+      final response =
+          await ParseCloudFunction('phoneAuthValidateCodeAndLogIn').execute(parameters: params);
 
-    final result = response.result;
+      final result = response.result;
 
 //    TODO HANDLE NEW USERS
-    final isNew = ParseUtils.getObjectData(result)["is_new"] as bool;
-    final sessionToken = ParseUtils.getObjectData(result)["session_token"] as String;
+      final isNew = ParseUtils.getObjectData(result)["is_new"] as bool;
+      final sessionToken = ParseUtils.getObjectData(result)["session_token"] as String;
 
-    return getApiResponse(await ParseUser.getCurrentUserFromServer(token: sessionToken));
+      return buildApiResponse(await ParseUser.getCurrentUserFromServer(token: sessionToken));
+    } catch (e) {
+      return ApiResponse(error: ApiError(500, "Unkown", true, ""));
+    }
   }
 }

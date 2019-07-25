@@ -7,23 +7,21 @@ import 'package:parse_server_sdk/parse_server_sdk.dart';
 class HiveRepositoryImpl extends HiveRepository {
   @override
   Future<ApiResponse<BHive>> getFollowedHives() async {
-    final response = await ParseCloudFunction('hiveManagerRetrieveJoined').execute();
-    final results = getApiResponse(response).results;
+    try {
+      final response = await ParseCloudFunction('hiveManagerRetrieveJoined').execute();
+      final results = buildApiResponse(response).results;
 
-    if (results is List<Map<String, Object>>) {
-      final List<BHive> hiveList = results
+      return buildResponseWith<BHive>((results as List<Map<String, Object>>)
           .map((element) => element["hive"])
           .map((hive) => getParseObjectFrom<BHive>(BHive(), hive))
-          .toList();
-      final list = getResponseOf<BHive>(hiveList);
-      return list;
-    } else {
-      return ApiResponse(results: null, error: ApiError(0, null, null, null));
-    }
+          .toList());
 
-//    final List<BHive> hiveList = results.map((it) {
-//      final item = it as Map<String, ParseObject>;
-//      return item["hive"] as BHive;
-//    });
+    } catch (e) {
+      return defaultError();
+    }
+  }
+
+  ApiResponse defaultError() {
+    return ApiResponse(results: null, error: ApiError(0, null, null, null));
   }
 }

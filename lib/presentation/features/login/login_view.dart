@@ -1,4 +1,3 @@
-import 'package:behivecompanion/data/repositories/auth/auth_repository_impl.dart';
 import 'package:behivecompanion/helper/text_mask.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
 import 'package:behivecompanion/presentation/base/router.dart';
@@ -16,87 +15,91 @@ import 'package:provider/provider.dart';
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<LoginBloc>(
-        model: LoginBloc(authRepository: Provider.of<AuthRepositoryImpl>(context)),
-        builder: (context, bloc, child) => Scaffold(
-              appBar: AppBar(
-                iconTheme: IconThemeData(
-                  color: Colors.black, //change your color here
+    return Scaffold(
+      appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          title: const Text(''),
+          backgroundColor: Colors.white,
+          elevation: 0),
+      body: Container(
+        color: Colors.white,
+        child: BaseWidget<LoginBloc>(
+          bloc: LoginBloc(Provider.of(context)),
+          builder: (context, bloc, child) => Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                child: ScreenHeaderWidget(
+                  title: bloc.vm.title,
+                  subtitle: bloc.vm.subTitle,
                 ),
-                title: const Text(''),
-                backgroundColor: Colors.white,
-                elevation: 0,
               ),
-              body: Container(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                      child: ScreenHeaderWidget(
-                        title: bloc.vm.title,
-                        subtitle: bloc.vm.subTitle,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
-                      child: Column(
-                        children: <Widget>[
-                          if (bloc.state == ViewState.CodeRequested)
-                            PinPut(
-                              fieldsCount: 4,
-                              onSubmit: (String pin) => bloc.onSmsCodeChanged(pin),
-                            )
-                          else if (bloc.state != ViewState.Busy)
-                            Row(
-                              children: <Widget>[
-                                CountryCodePicker(
-                                  onChanged: (country) => bloc.onCountryCodeChanged(country.code),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: LargeTextField(
-                                      textController:
-                                          MaskedTextController(mask: TextMask.brPhone()),
-                                      autoFocus: true,
-                                      labelText: bloc.vm.textLabel,
-                                      onChanged: (text) => bloc.onPhoneChanged(text),
-                                    ),
-                                  ),
-                                ),
-                              ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      if (bloc.state == ViewState.CodeRequested)
+                        PinPut(
+                          autoFocus: true,
+                          clearInput: true,
+                          onClear: () => bloc.onSmsCodeChanged(""),
+                          fieldsCount: 4,
+                          onSubmit: (pin) => bloc.onSmsCodeChanged(pin),
+                        ),
+                      if (bloc.state != ViewState.CodeRequested && bloc.state != ViewState.Busy)
+                        Row(
+                          children: <Widget>[
+                            CountryCodePicker(
+                              onChanged: (country) => bloc.onCountryCodeChanged(country.code),
                             ),
-                          if (bloc.state == ViewState.Busy)
-                            Container(
-                                padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(Colors.blue),
-                                  strokeWidth: 5.0,
-                                ))
-                          else
-                            Container(
-                              padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
-                              width: double.infinity,
-                              child: LargeButton(
-                                text: bloc.vm.btnText,
-                                onPressed: () async {
-                                  if (bloc.state != ViewState.CodeRequested)
-                                    bloc.requestCode();
-                                  else {
-                                    if (await bloc.loginWithPhone()) {
-                                      Navigator.pushNamed(context, RoutePaths.HiveList);
-                                    }
-                                  }
-                                },
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: LargeTextField(
+                                  textController: MaskedTextController(mask: TextMask.brPhone()),
+                                  autoFocus: true,
+                                  hintText: bloc.vm.phoneHint,
+                                  labelText: bloc.vm.textLabel,
+                                  onChanged: (phone) => bloc.onPhoneChanged(phone),
+                                ),
                               ),
-                            )
-                        ],
-                      ),
-                    )
-                  ],
+                            ),
+                          ],
+                        ),
+                      if (bloc.state == ViewState.Busy)
+                        Container(
+                            padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(Colors.blue),
+                              strokeWidth: 5.0,
+                            ))
+                      else
+                        Container(
+                          padding: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+                          width: double.infinity,
+                          child: LargeButton(
+                            text: bloc.vm.btnText,
+                            onPressed: () async {
+                              if (bloc.state != ViewState.CodeRequested)
+                                bloc.requestCode();
+                              else {
+                                if (await bloc.loginWithPhone()) {
+                                  Navigator.pushNamed(context, RoutePaths.HiveList);
+                                }
+                              }
+                            },
+                          ),
+                        )
+                    ],
+                  ),
                 ),
-              ),
-            ));
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

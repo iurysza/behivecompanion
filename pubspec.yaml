@@ -26,9 +26,13 @@ dependencies:
   mockito: ^4.1.0
   country_code_picker: ^1.1.7
   pinput: ^0.1.9
+  rxdart: ^0.22.1
+
   flutter_masked_text: ^0.8.0
   provider: ^3.0.0+1
   parse_server_sdk: ^1.0.22
+  fluttertoast: ^3.1.0
+
   flutter:
     sdk: flutter
 

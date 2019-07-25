@@ -9,6 +9,9 @@ abstract class LoginViewModel implements Built<LoginViewModel, LoginViewModelBui
   String get title;
 
   @nullable
+  String get phoneHint;
+
+  @nullable
   String get subTitle;
 
   @nullable
@@ -25,6 +28,8 @@ abstract class LoginViewModel implements Built<LoginViewModel, LoginViewModelBui
 
   @nullable
   String get smsCode;
+  @nullable
+  String get errorMsg;
 
   factory LoginViewModel([updates(LoginViewModelBuilder b)]) = _$LoginViewModel;
 
@@ -34,6 +39,7 @@ abstract class LoginViewModel implements Built<LoginViewModel, LoginViewModelBui
       ..subTitle = "Seu número de WhatsApp será\nseu login"
       ..btnText = "Continuar"
       ..countryCode = "55"
+      ..phoneHint = "(00) 00000-0000"
       ..textLabel = "Telefone");
   }
 

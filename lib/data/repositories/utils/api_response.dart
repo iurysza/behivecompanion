@@ -12,7 +12,7 @@ class ApiResponse<T extends Object> {
   ApiResponse({this.results, this.error});
 }
 
-ApiResponse getApiResponse(ParseResponse response) {
+ApiResponse buildApiResponse(ParseResponse response) {
   var list = response.results;
   var single = response.result;
 
@@ -38,7 +38,7 @@ ApiError getApiError(ParseError response) {
   return ApiError(response.code, response.message, response.isTypeOfException, response.type);
 }
 
-ApiResponse<T> getResponseOf<T>(List<dynamic> data) {
+ApiResponse<T> buildResponseWith<T>(List<dynamic> data) {
   return ApiResponse<T>(results: List.castFrom<dynamic, T>(data), error: null);
 }
 

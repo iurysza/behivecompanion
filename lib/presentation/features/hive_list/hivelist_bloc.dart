@@ -7,7 +7,7 @@ class HiveListBloc extends BaseModel {
   List<HiveItemModel> itemList = [];
   HiveRepository _hiveRepository;
 
-  HiveListBloc({@required HiveRepository hiveRepository}) : _hiveRepository = hiveRepository;
+  HiveListBloc( HiveRepository hiveRepository) : _hiveRepository = hiveRepository;
 
   void getHiveList() async {
     final apiResponse = await _hiveRepository.getFollowedHives();
