@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: mockedServices,
+      providers: actualServices,
       child: MaterialApp(
         title: 'Behive Companion',
         theme: ThemeUtils.getDefaultAppTheme(context),

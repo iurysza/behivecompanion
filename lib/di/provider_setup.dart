@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 List<SingleChildCloneableWidget> actualServices = [
   Provider<AuthRepository>.value(value: AuthRepositoryImpl()),
-  Provider.value(value: HiveRepositoryImpl()),
+  Provider<HiveRepository>.value(value: HiveRepositoryImpl()),
 ];
 
 List<SingleChildCloneableWidget> mockedServices = [
