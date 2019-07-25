@@ -1,5 +1,6 @@
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_widget.dart';
+import 'package:behivecompanion/presentation/base/router.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_bloc.dart';
 import 'package:behivecompanion/presentation/widgets/list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,17 +18,18 @@ class HiveListView extends StatelessWidget {
           child: BaseWidget<HiveListBloc>(
             onBlocReady: (viewModel) => viewModel.getHiveList(),
             bloc: HiveListBloc(Provider.of(context)),
-            builder: (context, viewModel, child) {
+            builder: (context, bloc, child) {
               return ListView.builder(
-                itemCount: viewModel.itemList.length,
+                itemCount: bloc.itemList.length,
                 itemBuilder: (context, position) {
-                  final item = viewModel.getItemAt(position);
+                  final item = bloc.getItemAt(position);
                   return ListItem(
                     title: item.name,
                     subtitle: item.name,
                     pictureUrl: item.pictureUrl ?? "",
-                    onTap: () => Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text("${item.name} clicked"))),
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.Statistics);
+                    },
                   );
                 },
               );

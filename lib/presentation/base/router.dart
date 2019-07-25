@@ -2,6 +2,7 @@ import 'package:behivecompanion/data/services/services_controller.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_view.dart';
 import 'package:behivecompanion/presentation/features/login/login_view.dart';
 import 'package:behivecompanion/presentation/features/onboarding/onboarding_view.dart';
+import 'package:behivecompanion/presentation/features/statistics/statistics_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -25,6 +26,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => LoginView());
       case RoutePaths.Onboarding:
         return MaterialPageRoute(builder: (_) => OnboardingView());
+      case RoutePaths.Statistics:
+        return MaterialPageRoute(builder: (_) => StatisticsView.withSampleData());
       case RoutePaths.HiveList:
         return MaterialPageRoute(builder: (_) => HiveListView());
       default:
@@ -42,4 +45,5 @@ class RoutePaths {
   static const String Login = 'login';
   static const String Onboarding = 'onboarding';
   static const String HiveList = 'hivelist';
+  static const String Statistics = 'statistics';
 }

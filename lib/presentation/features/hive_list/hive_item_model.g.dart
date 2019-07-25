@@ -10,14 +10,19 @@ class _$HiveItemModel extends HiveItemModel {
   @override
   final String name;
   @override
+  final String id;
+  @override
   final String pictureUrl;
 
   factory _$HiveItemModel([void Function(HiveItemModelBuilder) updates]) =>
       (new HiveItemModelBuilder()..update(updates)).build();
 
-  _$HiveItemModel._({this.name, this.pictureUrl}) : super._() {
+  _$HiveItemModel._({this.name, this.id, this.pictureUrl}) : super._() {
     if (name == null) {
       throw new BuiltValueNullFieldError('HiveItemModel', 'name');
+    }
+    if (id == null) {
+      throw new BuiltValueNullFieldError('HiveItemModel', 'id');
     }
   }
 
@@ -31,36 +36,42 @@ class _$HiveItemModel extends HiveItemModel {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is HiveItemModel && name == other.name && pictureUrl == other.pictureUrl;
+    return other is HiveItemModel &&
+        name == other.name &&
+        id == other.id &&
+        pictureUrl == other.pictureUrl;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, name.hashCode), pictureUrl.hashCode));
+    return $jf(
+        $jc($jc($jc(0, name.hashCode), id.hashCode), pictureUrl.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HiveItemModel')
           ..add('name', name)
+          ..add('id', id)
           ..add('pictureUrl', pictureUrl))
         .toString();
   }
 }
 
-class HiveItemModelBuilder implements Builder<HiveItemModel, HiveItemModelBuilder> {
+class HiveItemModelBuilder
+    implements Builder<HiveItemModel, HiveItemModelBuilder> {
   _$HiveItemModel _$v;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
+  String _id;
+  String get id => _$this._id;
+  set id(String id) => _$this._id = id;
+
   String _pictureUrl;
-
   String get pictureUrl => _$this._pictureUrl;
-
   set pictureUrl(String pictureUrl) => _$this._pictureUrl = pictureUrl;
 
   HiveItemModelBuilder();
@@ -68,6 +79,7 @@ class HiveItemModelBuilder implements Builder<HiveItemModel, HiveItemModelBuilde
   HiveItemModelBuilder get _$this {
     if (_$v != null) {
       _name = _$v.name;
+      _id = _$v.id;
       _pictureUrl = _$v.pictureUrl;
       _$v = null;
     }
@@ -89,7 +101,8 @@ class HiveItemModelBuilder implements Builder<HiveItemModel, HiveItemModelBuilde
 
   @override
   _$HiveItemModel build() {
-    final _$result = _$v ?? new _$HiveItemModel._(name: name, pictureUrl: pictureUrl);
+    final _$result = _$v ??
+        new _$HiveItemModel._(name: name, id: id, pictureUrl: pictureUrl);
     replace(_$result);
     return _$result;
   }
