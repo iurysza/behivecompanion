@@ -15,7 +15,6 @@ class HiveRepositoryImpl extends HiveRepository {
           .map((element) => element["hive"])
           .map((hive) => getParseObjectFrom<BHive>(BHive(), hive))
           .toList());
-
     } catch (e) {
       return defaultError();
     }
