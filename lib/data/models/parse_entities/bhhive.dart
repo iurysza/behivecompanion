@@ -9,6 +9,7 @@ class BHive extends ParseObject implements ParseCloneable {
   BHive clone(Map<String, dynamic> map) => BHive.clone()..fromJson(map);
 
   static const String keyAvatarUrl = 'picture';
+  String fakeAvatarUrl;
   static const String keyName = 'name';
 
   //region NAME
@@ -21,7 +22,7 @@ class BHive extends ParseObject implements ParseCloneable {
   //region AVATAR
   String get avatarUrl {
     final picture = get<ParseFile>(keyAvatarUrl);
-    return (picture as ParseFile)?.url ?? "";
+    return (picture as ParseFile)?.url ?? fakeAvatarUrl;
   }
 
   set avatarUrl(String avatarUrl) => set<String>(keyAvatarUrl, avatarUrl);

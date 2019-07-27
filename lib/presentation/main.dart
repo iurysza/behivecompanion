@@ -1,3 +1,4 @@
+import 'package:behivecompanion/data/services/services_controller.dart';
 import 'package:behivecompanion/di/provider_setup.dart';
 import 'package:behivecompanion/di/service_locator.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
@@ -7,8 +8,9 @@ import 'package:provider/provider.dart';
 
 Future main() async {
   Provider.debugCheckInvalidValueType = null;
-  ServiceContainer().injectDependencies();
-  runApp(MyApp(RoutePaths.Onboarding));
+  await ServiceContainer().injectDependencies().get<ServicesController>().initParse();
+
+  runApp(MyApp(RoutePaths.HiveList));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: actualServices,
+      providers: mockedServices,
       child: MaterialApp(
         title: 'Behive Companion',
         theme: ThemeUtils.getDefaultAppTheme(context),

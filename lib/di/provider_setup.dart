@@ -4,6 +4,7 @@ import 'package:behivecompanion/data/repositories/auth/mock_auth_repository.dart
 import 'package:behivecompanion/data/repositories/hives/hive_repository.dart';
 import 'package:behivecompanion/data/repositories/hives/hive_repositoryimpl.dart';
 import 'package:behivecompanion/data/repositories/hives/mock_hive_repository.dart';
+import 'package:behivecompanion/data/repositories/statistics/mock_statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repositoryimpl.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,8 @@ List<SingleChildCloneableWidget> actualServices = [
 List<SingleChildCloneableWidget> mockedServices = [
   Provider<AuthRepository>.value(value: AuthRepositoryMock()),
   Provider<HiveRepository>.value(value: HiveRepositoryMock()),
+  Provider<StatisticsRepository>.value(value: StatisticsRepositoryMock()),
+
 ];
 //
 

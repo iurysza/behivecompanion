@@ -27,7 +27,7 @@ class Router {
       case RoutePaths.Onboarding:
         return MaterialPageRoute(builder: (_) => OnboardingView());
       case RoutePaths.Statistics:
-        return MaterialPageRoute(builder: (_) => StatisticsView.withSampleData());
+        return MaterialPageRoute(builder: (_) => StatisticsView(settings.arguments as String));
       case RoutePaths.HiveList:
         return MaterialPageRoute(builder: (_) => HiveListView());
       default:
