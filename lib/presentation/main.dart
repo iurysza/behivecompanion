@@ -6,11 +6,18 @@ import 'package:behivecompanion/presentation/base/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+bool isLoggedIn() {
+  return true;
+}
+
 Future main() async {
   Provider.debugCheckInvalidValueType = null;
-  await ServiceContainer().injectDependencies().get<ServicesController>().initParse();
+  var servicesController = ServiceContainer().injectDependencies().get<ServicesController>();
+  await servicesController.initParse();
 
-  runApp(MyApp(RoutePaths.HiveList));
+  runApp(
+    MyApp(await Router.getInitialRoute(servicesController.parseController.isLoggedIn)),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: mockedServices,
+      providers: actualServices,
       child: MaterialApp(
         title: 'Behive Companion',
         theme: ThemeUtils.getDefaultAppTheme(context),

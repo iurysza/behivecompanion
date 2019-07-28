@@ -15,6 +15,7 @@ class ParseController {
   }
 
   Future<bool> isLoggedIn() async {
-    return await ParseUser.currentUser() != null;
+    var currentUser = await ParseUser.currentUser();
+    return await currentUser != null;
   }
 }

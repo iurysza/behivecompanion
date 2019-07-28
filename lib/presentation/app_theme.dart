@@ -1,4 +1,5 @@
 import 'package:behivecompanion/helper/color.dart';
+import 'package:charts_common/common.dart' as charts;
 import 'package:flutter/material.dart';
 
 class ThemeUtils {
@@ -32,5 +33,36 @@ class ThemeUtils {
           body1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300, color: Colors.black54),
           overline: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300, color: Colors.black38),
         ));
+  }
+
+
+
+
+}
+
+class BHColor {
+  static final chartPink = HexColor("#FF6D76");
+  static final chartBlue = HexColor("#83D2FF");
+  static final chartGreen = HexColor("#B3E3E1");
+  static final chartYellow = HexColor("#FFC40A");
+
+  static final chartPalette = [chartPink, chartBlue, chartGreen, chartYellow];
+
+  static Color getPiePalette(int index) {
+    var position;
+    if (index < 0) {
+      position = (index % chartPalette.length + chartPalette.length) % chartPalette.length;
+    } else {
+      position = index % chartPalette.length;
+    }
+    return chartPalette[position];
+  }
+
+  static charts.Color getChartPalette(int index) {
+    return asChartColor(getPiePalette(index));
+  }
+
+  static charts.Color asChartColor(Color color) {
+    return charts.Color(r: color.red, g: color.green, b: color.blue, a: color.alpha);
   }
 }

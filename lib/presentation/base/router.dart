@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Router {
-  static Future<String> getInitialRoute(ServicesController serviceController) async {
+  static Future<String> getInitialRoute(Function isLoggedIn) async {
     try {
-      if (await serviceController.parseController.isLoggedIn()) {
-        return RoutePaths.Login;
-      } else {
+      if (await isLoggedIn()) {
         return RoutePaths.HiveList;
+      } else {
+        return RoutePaths.Login;
       }
     } catch (e) {
       return RoutePaths.Login;

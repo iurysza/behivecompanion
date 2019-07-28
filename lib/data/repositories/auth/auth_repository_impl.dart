@@ -34,7 +34,10 @@ class AuthRepositoryImpl extends AuthRepository {
       final isNew = ParseUtils.getObjectData(result)["is_new"] as bool;
       final sessionToken = ParseUtils.getObjectData(result)["session_token"] as String;
 
-      return buildApiResponse(await ParseUser.getCurrentUserFromServer(token: sessionToken));
+      var userFromServer = await ParseUser.getCurrentUserFromServer(token: sessionToken);
+
+      final user = await ParseUser.currentUser();
+      return buildApiResponse(await user);
     } catch (e) {
       return ApiResponse(error: ApiError(500, "Unkown", true, ""));
     }
