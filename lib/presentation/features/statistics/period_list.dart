@@ -1,38 +1,50 @@
+import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 class PeriodList extends StatelessWidget {
   final List<String> availableDates;
   final int selectedPos;
   final Function onClick;
+  final List<charts.Series<BarDataEntry, String>> seriesData;
 
-  PeriodList(this.availableDates, {this.selectedPos = 0, this.onClick});
+  PeriodList(this.availableDates, {this.selectedPos = 0, this.onClick, this.seriesData});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 10,
-      child: ListView.builder(
-        shrinkWrap: true,
-          reverse: true,
-          itemCount: availableDates.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (ctx, idx) {
-            var textStyle = Theme.of(context).textTheme;
-            return Container(
-              alignment: Alignment(0.0, 0.0),
-              child: InkWell(
-                onTap: ()=> onClick(idx),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    availableDates[idx],
-                    textAlign: TextAlign.center,
-                    style: idx == selectedPos ? textStyle.body1 : textStyle.body1,
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 10,
+          child: ListView.builder(
+            shrinkWrap: true,
+              reverse: true,
+              itemCount: availableDates.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (ctx, idx) {
+                var textStyle = Theme.of(context).textTheme;
+                return Container(
+                  alignment: Alignment(0.0, 0.0),
+                  child: InkWell(
+                    onTap: ()=> onClick(idx),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        availableDates[idx],
+                        textAlign: TextAlign.center,
+                        style: idx == selectedPos ? textStyle.body1 : textStyle.body1,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            );
-          }),
+                );
+              }),
+        ),
+//        charts.BarChart(
+//          seriesData,
+//          animate: true,
+//        )
+
+      ],
     );
   }
 }

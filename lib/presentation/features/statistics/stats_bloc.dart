@@ -9,8 +9,7 @@ class StatsBloc extends BaseModel {
   List<Series<StatsResult, int>> chartDataList = [];
   StatisticsRepository _statisticsRepository;
 
-  StatsBloc(StatisticsRepository statisticsRepository)
-      : _statisticsRepository = statisticsRepository;
+  StatsBloc(this._statisticsRepository);
 
   void fetchFeaturesStats(String hiveId) async {
     final apiResponse = await _statisticsRepository.getFeatureStats(hiveId);
@@ -21,6 +20,7 @@ class StatsBloc extends BaseModel {
     notifyListeners();
   }
 
+
   static List<Series<StatsResult, int>> mapToSeries(List<StatsResult> data) {
     return [
       Series<StatsResult, int>(
@@ -29,7 +29,6 @@ class StatsBloc extends BaseModel {
         domainFn: (StatsResult stats, _) => stats.value,
         measureFn: (StatsResult stats, _) => stats.value,
         data: data,
-//        labelAccessorFn: (StatsResult row, int value) => '${row.label}',
       )
     ];
   }

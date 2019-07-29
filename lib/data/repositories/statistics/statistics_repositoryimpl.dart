@@ -22,8 +22,10 @@ class StatisticsRepositoryImpl extends StatisticsRepository {
   @override
   Future<ApiResponse<List<DateStatsResult>>> getMessageCountStats(
       String hiveId, int from, int to) async {
-    final Map<String, String> params = <String, String>{
+    final Map<String, Object> params = <String, Object>{
       'object_id': hiveId,
+      'from': from,
+      'to': to,
     };
     final response = await ParseCloudFunction('getHiveMessagesStats').execute(parameters: params);
     final results = buildApiResponse(response).results;

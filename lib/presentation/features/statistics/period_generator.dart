@@ -1,3 +1,4 @@
+import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
 import 'package:intl/intl.dart';
 
 abstract class ChartPeriod {
@@ -33,19 +34,25 @@ class PeriodGenerator {
     }).toList();
   }
 
-
-  String asString(ChartPeriod period) {
+  String getPeriodListFormat(ChartPeriod period) {
     var formatter;
-    if(period is MonthPeriod) {
-    formatter = DateFormat('MMMM\nyyyy');
-    }else{
-    formatter = DateFormat('yyyy-MM-dd');
+    if (period is MonthPeriod) {
+      formatter = DateFormat('MMMM\nyyyy');
+    } else {
+      formatter = DateFormat('yyyy-MM-dd');
     }
 
     return formatter.format(period.from);
   }
 
-
+  String getBarEntryFormat(ChartPeriod period) {
+    if (period is MonthPeriod) {
+      return DateFormat('MMM').format(period.from);
+    } else {
+      final formatter = DateFormat('dd');
+      return "${formatter.format(period.from)} - ${formatter.format(period.to)}";
+    }
+  }
 
   List<MonthPeriod> createMonthList() {
     return List.generate(5, (index) => index + 1).map((it) {
@@ -56,6 +63,11 @@ class PeriodGenerator {
     }).toList();
   }
 
-
-
+  ChartPeriod createDatePeriod(ViewState period, DateTime date) {
+    if (period == ViewState.Week) {
+      return WeekPeriod(date, date.add(Duration(days: 1)));
+    } else {
+      return MonthPeriod(date, date.add(Duration(days: 7)));
+    }
+  }
 }

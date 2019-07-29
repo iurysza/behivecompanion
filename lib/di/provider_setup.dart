@@ -7,6 +7,7 @@ import 'package:behivecompanion/data/repositories/hives/mock_hive_repository.dar
 import 'package:behivecompanion/data/repositories/statistics/mock_statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repositoryimpl.dart';
+import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
 import 'package:provider/provider.dart';
 
 
@@ -14,11 +15,13 @@ List<SingleChildCloneableWidget> actualServices = [
   Provider<AuthRepository>.value(value: AuthRepositoryImpl()),
   Provider<StatisticsRepository>.value(value: StatisticsRepositoryImpl()),
   Provider<HiveRepository>.value(value: HiveRepositoryImpl()),
+  Provider<PeriodGenerator>.value(value: PeriodGenerator()),
 ];
 
 List<SingleChildCloneableWidget> mockedServices = [
   Provider<AuthRepository>.value(value: AuthRepositoryMock()),
   Provider<HiveRepository>.value(value: HiveRepositoryMock()),
+  Provider<PeriodGenerator>.value(value: PeriodGenerator()),
   Provider<StatisticsRepository>.value(value: StatisticsRepositoryMock()),
 
 ];
