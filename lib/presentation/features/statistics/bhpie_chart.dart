@@ -22,7 +22,8 @@ class BHPieChart extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Expanded(
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -50,8 +51,7 @@ class BHPieChart extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 1.8,
+          Expanded(
             child: ListView.builder(
               itemCount: legendData.length,
               itemBuilder: (ctx, idx) => Padding(

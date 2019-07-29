@@ -18,4 +18,22 @@ class StatisticsRepositoryImpl extends StatisticsRepository {
         )
         .toList());
   }
+
+  @override
+  Future<ApiResponse<List<DateStatsResult>>> getMessageCountStats(
+      String hiveId, int from, int to) async {
+    final Map<String, String> params = <String, String>{
+      'object_id': hiveId,
+    };
+    final response = await ParseCloudFunction('getHiveMessagesStats').execute(parameters: params);
+    final results = buildApiResponse(response).results;
+
+    return buildResponseWith<List<DateStatsResult>>((results as List<Map<String, Object>>)
+        .map(
+          (element) => DateStatsResult(
+              DateTime.fromMillisecondsSinceEpoch(element["date"] as int, isUtc: true),
+              element["value"] as int),
+        )
+        .toList());
+  }
 }

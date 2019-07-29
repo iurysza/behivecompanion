@@ -16,4 +16,11 @@ class StatisticsRepositoryMock extends StatisticsRepository {
             Duration(milliseconds: 500))
         .first;
   }
+
+  @override
+  Future<ApiResponse<List<DateStatsResult>>> getMessageCountStats(String hiveId, int from, int to) {
+    return null;
+  }
+
+
 }

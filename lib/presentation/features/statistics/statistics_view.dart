@@ -1,5 +1,8 @@
 import 'package:behivecompanion/presentation/base/base_widget.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
 import 'package:behivecompanion/presentation/features/statistics/bhpie_chart.dart';
+import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/period_list.dart';
 import 'package:behivecompanion/presentation/features/statistics/stats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,7 +31,23 @@ class StatisticsView extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 0,
           ),
-          body: BHPieChart(data: bloc.chartDataList, legendData: bloc.itemList),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              BaseWidget<BarChartBloc>(
+                bloc: BarChartBloc(PeriodGenerator()),
+                onBlocReady: (barBloc) => barBloc.initDates(),
+                builder: (context, barBloc, child) => PeriodList(
+                  barBloc.dateList,
+                  selectedPos: barBloc.selectedDate,
+                  onClick: (pos)=> barBloc.onDateSelected(pos),
+                ),
+              ),
+              Expanded(
+                child: BHPieChart(data: bloc.chartDataList, legendData: bloc.itemList),
+              ),
+            ],
+          ),
         );
       },
     );
