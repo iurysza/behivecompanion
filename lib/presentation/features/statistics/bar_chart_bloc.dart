@@ -39,8 +39,8 @@ class BarChartBloc extends BaseModel {
   List<Series<BarDataEntry, String>> mapToSeries(List<BarDataEntry> data) {
     return [
       Series<BarDataEntry, String>(
-        id: '123',
-        colorFn: (BarDataEntry stat, int pos) => BHColor.getChartPalette(0),
+        id: 'Messages',
+        colorFn: (_, __) => BHColor.getChartPalette(0),
         domainFn: (BarDataEntry stats, _) => _periodGenerator.getPeriodListFormat(stats.period),
         measureFn: (BarDataEntry stats, _) => stats.value,
         data: data,

@@ -38,7 +38,7 @@ class BHPieChart extends StatelessWidget {
                   child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: PieChart(data,
-                          animate: false,
+                          animate: true,
                           defaultRenderer: ArcRendererConfig(
                             arcWidth: 30,
                             arcRendererDecorators: [

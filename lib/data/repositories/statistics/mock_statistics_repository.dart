@@ -19,7 +19,19 @@ class StatisticsRepositoryMock extends StatisticsRepository {
 
   @override
   Future<ApiResponse<List<DateStatsResult>>> getMessageCountStats(String hiveId, int from, int to) {
-    return null;
+    return Observable<ApiResponse<List<DateStatsResult>>>.timer(
+        buildResponseWith<List<DateStatsResult>>([
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559347200000), 100),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559433600000), 5),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559520000000), 25),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559606400000), 34),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559692800000), 55),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559779200000), 44),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559865600000), 87),
+          DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1559952000000), 75),
+        ]),
+        Duration(milliseconds: 500))
+        .first;
   }
 
 
