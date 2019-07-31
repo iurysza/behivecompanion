@@ -1,7 +1,7 @@
 import 'package:behivecompanion/presentation/base/base_widget.dart';
 import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
 import 'package:behivecompanion/presentation/features/statistics/bhpie_chart.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_list.dart';
+import 'package:behivecompanion/presentation/features/statistics/date_bar_chart.dart';
 import 'package:behivecompanion/presentation/features/statistics/stats_bloc.dart';
 import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
@@ -18,42 +18,47 @@ class StatisticsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<StatsBloc>(
-      onBlocReady: (bloc) => bloc.fetchFeaturesStats(hiveId),
-      bloc: StatsBloc(Provider.of(context)),
-      builder: (context, bloc, child) {
-        return Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            title: Text(
-              'Estatísticas',
-              style: Theme.of(context).textTheme.body2,
-            ),
-            backgroundColor: Colors.white,
-            elevation: 0,
-          ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              BaseWidget<BarChartBloc>(
-                bloc: BarChartBloc(Provider.of(context), Provider.of(context)),
-                onBlocReady: (barBloc) => barBloc.initChart(hiveId),
-                builder: (context, barBloc, child) => PeriodList(
-                  barBloc.dateList,
-                  seriesData: barBloc.seriesData,
-                  onClick: (pos) => barBloc.fetchMessageStatsForDateAt(pos),
+        onBlocReady: (bloc) => bloc.fetchFeaturesStats(hiveId),
+        bloc: StatsBloc(Provider.of(context)),
+        builder: (context, bloc, child) {
+          return Scaffold(
+              appBar: AppBar(
+                iconTheme: IconThemeData(color: Colors.black),
+                title: Text(
+                  'Estatísticas',
+                  style: Theme.of(context).textTheme.body2,
                 ),
+                backgroundColor: Colors.white,
+                elevation: 0,
               ),
-              Expanded(
-                child: BHPieChart(data: bloc.chartDataList, legendData: bloc.itemList),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    BaseWidget<BarChartBloc>(
+                      bloc: BarChartBloc(Provider.of(context), Provider.of(context)),
+                      onBlocReady: (barBloc) => barBloc.initChart(hiveId),
+                      builder: (context, barBloc, child) => DateBarChart(
+                        barBloc.model.dateList,
+                        menuOptions: barBloc.model.periodTypeItems,
+                        onMenuChanged: (period) => barBloc.onPeriodFilterChanged(period),
+                        seriesData: barBloc.model.seriesData,
+                        onDateClick: (pos) => barBloc.fetchMessageStatsForDateAt(pos),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 600,
+                      child: BHPieChart(
+                        data: bloc.chartDataList,
+                        legendData: bloc.itemList,
+                      ),
+                    ),
+                  ],
+                ),
+              ));
+        });
   }
 }
-
 
 class SimpleBarChart extends StatelessWidget {
   final List<Series> seriesList;
@@ -69,7 +74,6 @@ class SimpleBarChart extends StatelessWidget {
       animate: false,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

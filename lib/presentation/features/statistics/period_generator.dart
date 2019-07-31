@@ -34,12 +34,33 @@ class PeriodGenerator {
     }).toList();
   }
 
+
+  List<String> buildFor(ViewState periodType) {
+    List<ChartPeriod> _periodList = [];
+    if (periodType == ViewState.Month) {
+      _periodList = createMonthList();
+    } else {
+      _periodList = createWeekList();
+    }
+    return _periodList.map((e) => getPeriodListFormat(e)).toList();
+  }
+
+
+  List<ChartPeriod> buildPeriodList(ViewState periodType) {
+    if (periodType == ViewState.Month) {
+      return createMonthList();
+    } else {
+      return createWeekList();
+    }
+  }
+
   String getPeriodListFormat(ChartPeriod period) {
     var formatter;
     if (period is MonthPeriod) {
       formatter = DateFormat('MMMM\nyyyy');
     } else {
-      formatter = DateFormat('yyyy-MM-dd');
+      final formatter = DateFormat('dd');
+      return "${formatter.format(period.from)} - ${formatter.format(period.to)}";
     }
 
     return formatter.format(period.from);
@@ -47,15 +68,15 @@ class PeriodGenerator {
 
   String getBarEntryFormat(ChartPeriod period) {
     if (period is MonthPeriod) {
-      return DateFormat('MMM').format(period.from);
-    } else {
       final formatter = DateFormat('dd');
       return "${formatter.format(period.from)} - ${formatter.format(period.to)}";
+    } else {
+      return DateFormat('E').format(period.from);
     }
   }
 
-  List<MonthPeriod> createMonthList() {
-    return List.generate(5, (index) => index + 1).map((it) {
+  List<MonthPeriod> createMonthList({int length=5}) {
+    return List.generate(length, (index) => index + 1).map((it) {
       final now = DateTime.now();
       DateTime date = DateTime.utc(now.year, now.month - it);
       var nextMonth = DateTime.utc(date.year, date.month + 1);
