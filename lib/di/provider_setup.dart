@@ -7,7 +7,7 @@ import 'package:behivecompanion/data/repositories/hives/mock_hive_repository.dar
 import 'package:behivecompanion/data/repositories/statistics/mock_statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repositoryimpl.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:provider/provider.dart';
 
 

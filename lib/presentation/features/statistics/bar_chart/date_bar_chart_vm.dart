@@ -1,5 +1,5 @@
-import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/bar_chart_bloc.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:built_value/built_value.dart';
 import 'package:charts_flutter/flutter.dart';
 

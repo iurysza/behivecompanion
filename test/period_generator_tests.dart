@@ -1,4 +1,4 @@
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:test/test.dart';
 
 void main() {

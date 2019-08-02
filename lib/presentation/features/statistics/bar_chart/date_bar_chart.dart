@@ -1,4 +1,4 @@
-import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/bar_chart_bloc.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:flutter/src/painting/basic_types.dart' as flutter;

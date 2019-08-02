@@ -22,7 +22,8 @@ class HiveRepositoryMock extends HiveRepository {
                 ..objectId = "2"
                 ..name = "Test 2",
               BHive()
-                ..fakeAvatarUrl = "https://images.vexels.com/media/users/3/137213/isolated/lists/26974c1d3b83470d74a16b1dc4c9c8de-apartment-building-city-house.png"
+                ..fakeAvatarUrl =
+                    "https://images.vexels.com/media/users/3/137213/isolated/lists/26974c1d3b83470d74a16b1dc4c9c8de-apartment-building-city-house.png"
                 ..objectId = "3"
                 ..name = "Test 3"
             ]),

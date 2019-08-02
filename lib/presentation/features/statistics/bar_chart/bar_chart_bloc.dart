@@ -2,8 +2,8 @@ import 'package:behivecompanion/data/models/stats_result.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/presentation/app_theme.dart';
 import 'package:behivecompanion/presentation/base/base_model.dart';
-import 'package:behivecompanion/presentation/features/statistics/date_bar_chart_vm.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/date_bar_chart_vm.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:charts_flutter/flutter.dart';
 
 class BarChartBloc extends BaseModel {

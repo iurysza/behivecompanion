@@ -1,4 +1,4 @@
-import 'package:behivecompanion/presentation/features/statistics/bar_chart_bloc.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/bar_chart_bloc.dart';
 import 'package:intl/intl.dart';
 
 abstract class ChartPeriod {

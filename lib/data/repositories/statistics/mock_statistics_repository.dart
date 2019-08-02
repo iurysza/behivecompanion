@@ -1,7 +1,7 @@
 import 'package:behivecompanion/data/models/stats_result.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StatisticsRepositoryMock extends StatisticsRepository {
@@ -31,7 +31,7 @@ class StatisticsRepositoryMock extends StatisticsRepository {
         DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1564358400000), 34),
       ];
     } else {
-     data= [
+      data = [
         DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1561939200000), 2),
         DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1562025600000), 5),
         DateStatsResult(DateTime.fromMillisecondsSinceEpoch(1562112000000), 25),
@@ -43,8 +43,7 @@ class StatisticsRepositoryMock extends StatisticsRepository {
     }
 
     return Observable<ApiResponse<List<DateStatsResult>>>.timer(
-            buildResponseWith<List<DateStatsResult>>(data),
-            Duration(milliseconds: 500))
+            buildResponseWith<List<DateStatsResult>>(data), Duration(milliseconds: 500))
         .first;
   }
 }

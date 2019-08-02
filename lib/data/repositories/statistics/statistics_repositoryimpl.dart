@@ -1,7 +1,7 @@
 import 'package:behivecompanion/data/models/stats_result.dart';
 import 'package:behivecompanion/data/repositories/statistics/statistics_repository.dart';
 import 'package:behivecompanion/data/repositories/utils/api_response.dart';
-import 'package:behivecompanion/presentation/features/statistics/period_generator.dart';
+import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 class StatisticsRepositoryImpl extends StatisticsRepository {
