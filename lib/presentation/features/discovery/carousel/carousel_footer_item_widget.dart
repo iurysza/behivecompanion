@@ -9,7 +9,7 @@ class CarouselFooterItem extends StatelessWidget {
     final style = Theme.of(context).textTheme;
 
     var nextInt = Random().nextInt(2);
-    var isLocked = nextInt==0;
+    var isLocked = nextInt == 0;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8),
       alignment: Alignment.bottomCenter,
@@ -18,7 +18,7 @@ class CarouselFooterItem extends StatelessWidget {
           Expanded(
               child: Row(
             children: <Widget>[
-              GroupIcon(isLocked?Icons.lock:Icons.lock_open),
+              GroupIcon(isLocked ? Icons.lock : Icons.lock_open),
               GroupIcon(MyFlutterApp.hash),
               GroupIcon(Icons.group)
             ],

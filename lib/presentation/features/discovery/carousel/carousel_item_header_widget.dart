@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CarouselHeaderItem extends StatelessWidget {
@@ -26,10 +28,9 @@ class CarouselHeaderItem extends StatelessWidget {
             ),
             Container(
               height: double.infinity,
-
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment(0, -.1),
+                  begin: Alignment(0, -.2),
                   end: Alignment(0, 1),
                   colors: [Colors.white10, Colors.white],
                 ),

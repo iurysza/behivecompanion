@@ -46,8 +46,7 @@ class _$LoginViewModel extends LoginViewModel {
       (toBuilder()..update(updates)).build();
 
   @override
-  LoginViewModelBuilder toBuilder() =>
-      new LoginViewModelBuilder()..replace(this);
+  LoginViewModelBuilder toBuilder() => new LoginViewModelBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -71,9 +70,7 @@ class _$LoginViewModel extends LoginViewModel {
             $jc(
                 $jc(
                     $jc(
-                        $jc(
-                            $jc($jc($jc(0, title.hashCode), phoneHint.hashCode),
-                                subTitle.hashCode),
+                        $jc($jc($jc($jc(0, title.hashCode), phoneHint.hashCode), subTitle.hashCode),
                             btnText.hashCode),
                         textLabel.hashCode),
                     countryCode.hashCode),
@@ -98,44 +95,61 @@ class _$LoginViewModel extends LoginViewModel {
   }
 }
 
-class LoginViewModelBuilder
-    implements Builder<LoginViewModel, LoginViewModelBuilder> {
+class LoginViewModelBuilder implements Builder<LoginViewModel, LoginViewModelBuilder> {
   _$LoginViewModel _$v;
 
   String _title;
+
   String get title => _$this._title;
+
   set title(String title) => _$this._title = title;
 
   String _phoneHint;
+
   String get phoneHint => _$this._phoneHint;
+
   set phoneHint(String phoneHint) => _$this._phoneHint = phoneHint;
 
   String _subTitle;
+
   String get subTitle => _$this._subTitle;
+
   set subTitle(String subTitle) => _$this._subTitle = subTitle;
 
   String _btnText;
+
   String get btnText => _$this._btnText;
+
   set btnText(String btnText) => _$this._btnText = btnText;
 
   String _textLabel;
+
   String get textLabel => _$this._textLabel;
+
   set textLabel(String textLabel) => _$this._textLabel = textLabel;
 
   String _countryCode;
+
   String get countryCode => _$this._countryCode;
+
   set countryCode(String countryCode) => _$this._countryCode = countryCode;
 
   String _phoneNumber;
+
   String get phoneNumber => _$this._phoneNumber;
+
   set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   String _smsCode;
+
   String get smsCode => _$this._smsCode;
+
   set smsCode(String smsCode) => _$this._smsCode = smsCode;
 
   String _errorMsg;
+
   String get errorMsg => _$this._errorMsg;
+
   set errorMsg(String errorMsg) => _$this._errorMsg = errorMsg;
 
   LoginViewModelBuilder();

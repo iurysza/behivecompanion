@@ -13,7 +13,11 @@ class DateBarChart extends StatelessWidget {
   MapEntry<ViewState, String> initialValue;
 
   DateBarChart(this.availableDates,
-      {this.selectedPos = 0, this.onDateClick, this.seriesData, this.onMenuChanged, this.menuOptions}) {
+      {this.selectedPos = 0,
+      this.onDateClick,
+      this.seriesData,
+      this.onMenuChanged,
+      this.menuOptions}) {
     this.initialValue = menuOptions[0];
   }
 
@@ -37,7 +41,7 @@ class DateBarChart extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height /14,
+          height: MediaQuery.of(context).size.height / 14,
           child: ListView.builder(
               shrinkWrap: true,
               reverse: true,
@@ -50,11 +54,13 @@ class DateBarChart extends StatelessWidget {
                   child: InkWell(
                     onTap: () => onDateClick(idx),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(32,8,32,8),
+                      padding: const EdgeInsets.fromLTRB(32, 8, 32, 8),
                       child: Text(
                         availableDates[idx],
                         textAlign: TextAlign.center,
-                        style: idx == selectedPos ? textStyle.body2.copyWith(fontSize: 18) : textStyle.body1.copyWith(fontSize: 18),
+                        style: idx == selectedPos
+                            ? textStyle.body2.copyWith(fontSize: 18)
+                            : textStyle.body1.copyWith(fontSize: 18),
                       ),
                     ),
                   ),

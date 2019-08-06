@@ -28,6 +28,7 @@ abstract class LoginViewModel implements Built<LoginViewModel, LoginViewModelBui
 
   @nullable
   String get smsCode;
+
   @nullable
   String get errorMsg;
 

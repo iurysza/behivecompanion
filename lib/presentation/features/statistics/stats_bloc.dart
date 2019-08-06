@@ -14,12 +14,11 @@ class StatsBloc extends BaseModel {
   void fetchFeaturesStats(String hiveId) async {
     final apiResponse = await _statisticsRepository.getFeatureStats(hiveId);
     if (!apiResponse.isError()) {
-      this. itemList = apiResponse.results.cast<StatsResult>();
+      this.itemList = apiResponse.results.cast<StatsResult>();
       this.chartDataList = mapToSeries(itemList);
     }
     notifyListeners();
   }
-
 
   static List<Series<StatsResult, int>> mapToSeries(List<StatsResult> data) {
     return [

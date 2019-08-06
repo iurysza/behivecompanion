@@ -1,5 +1,4 @@
 import 'package:behivecompanion/data/repositories/auth/auth_repository.dart';
-import 'package:behivecompanion/data/repositories/auth/mock_auth_repository.dart';
 import 'package:behivecompanion/presentation/base/base_model.dart';
 import 'package:behivecompanion/presentation/features/login/login_view_model.dart';
 
@@ -26,7 +25,7 @@ class LoginBloc extends BaseModel {
   Future<bool> loginWithPhone() async {
     _setState(ViewState.Busy);
     var response = await _authRepository.loginWithPhone(vm.countryCode, vm.phoneNumber, vm.smsCode);
-    if (response?.isError()==true) {
+    if (response?.isError() == true) {
       setError("Algo de errado aconteceu: ${response.error.message}");
     }
     return true;

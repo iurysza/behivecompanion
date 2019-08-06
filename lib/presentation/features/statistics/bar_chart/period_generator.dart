@@ -34,7 +34,6 @@ class PeriodGenerator {
     }).toList();
   }
 
-
   List<String> buildFor(ViewState periodType) {
     List<ChartPeriod> _periodList = [];
     if (periodType == ViewState.Month) {
@@ -44,7 +43,6 @@ class PeriodGenerator {
     }
     return _periodList.map((e) => getPeriodListFormat(e)).toList();
   }
-
 
   List<ChartPeriod> buildPeriodList(ViewState periodType) {
     if (periodType == ViewState.Month) {
@@ -75,7 +73,7 @@ class PeriodGenerator {
     }
   }
 
-  List<MonthPeriod> createMonthList({int length=5}) {
+  List<MonthPeriod> createMonthList({int length = 5}) {
     return List.generate(length, (index) => index + 1).map((it) {
       final now = DateTime.now();
       DateTime date = DateTime.utc(now.year, now.month - it);

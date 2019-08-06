@@ -86,8 +86,7 @@ class _$DateBarChartVm extends DateBarChartVm {
       (toBuilder()..update(updates)).build();
 
   @override
-  DateBarChartVmBuilder toBuilder() =>
-      new DateBarChartVmBuilder()..replace(this);
+  DateBarChartVmBuilder toBuilder() => new DateBarChartVmBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -116,9 +115,7 @@ class _$DateBarChartVm extends DateBarChartVm {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc(
-                                        $jc($jc(0, hiveId.hashCode),
-                                            period.hashCode),
+                                    $jc($jc($jc(0, hiveId.hashCode), period.hashCode),
                                         periodList.hashCode),
                                     seriesData.hashCode),
                                 dateList.hashCode),
@@ -148,60 +145,75 @@ class _$DateBarChartVm extends DateBarChartVm {
   }
 }
 
-class DateBarChartVmBuilder
-    implements Builder<DateBarChartVm, DateBarChartVmBuilder> {
+class DateBarChartVmBuilder implements Builder<DateBarChartVm, DateBarChartVmBuilder> {
   _$DateBarChartVm _$v;
 
   String _hiveId;
+
   String get hiveId => _$this._hiveId;
+
   set hiveId(String hiveId) => _$this._hiveId = hiveId;
 
   ViewState _period;
+
   ViewState get period => _$this._period;
+
   set period(ViewState period) => _$this._period = period;
 
   List<ChartPeriod> _periodList;
+
   List<ChartPeriod> get periodList => _$this._periodList;
-  set periodList(List<ChartPeriod> periodList) =>
-      _$this._periodList = periodList;
+
+  set periodList(List<ChartPeriod> periodList) => _$this._periodList = periodList;
 
   List<Series<BarDataEntry, String>> _seriesData;
+
   List<Series<BarDataEntry, String>> get seriesData => _$this._seriesData;
-  set seriesData(List<Series<BarDataEntry, String>> seriesData) =>
-      _$this._seriesData = seriesData;
+
+  set seriesData(List<Series<BarDataEntry, String>> seriesData) => _$this._seriesData = seriesData;
 
   List<String> _dateList;
+
   List<String> get dateList => _$this._dateList;
+
   set dateList(List<String> dateList) => _$this._dateList = dateList;
 
   List<String> _periodListText;
+
   List<String> get periodListText => _$this._periodListText;
-  set periodListText(List<String> periodListText) =>
-      _$this._periodListText = periodListText;
+
+  set periodListText(List<String> periodListText) => _$this._periodListText = periodListText;
 
   List<MapEntry<ViewState, String>> _periodTypeItems;
-  List<MapEntry<ViewState, String>> get periodTypeItems =>
-      _$this._periodTypeItems;
+
+  List<MapEntry<ViewState, String>> get periodTypeItems => _$this._periodTypeItems;
+
   set periodTypeItems(List<MapEntry<ViewState, String>> periodTypeItems) =>
       _$this._periodTypeItems = periodTypeItems;
 
   Map<ViewState, String> _menuOptions;
+
   Map<ViewState, String> get menuOptions => _$this._menuOptions;
-  set menuOptions(Map<ViewState, String> menuOptions) =>
-      _$this._menuOptions = menuOptions;
+
+  set menuOptions(Map<ViewState, String> menuOptions) => _$this._menuOptions = menuOptions;
 
   Map<ViewState, String> _currentPeriodType;
+
   Map<ViewState, String> get currentPeriodType => _$this._currentPeriodType;
+
   set currentPeriodType(Map<ViewState, String> currentPeriodType) =>
       _$this._currentPeriodType = currentPeriodType;
 
   int _currentPeriodPos;
+
   int get currentPeriodPos => _$this._currentPeriodPos;
-  set currentPeriodPos(int currentPeriodPos) =>
-      _$this._currentPeriodPos = currentPeriodPos;
+
+  set currentPeriodPos(int currentPeriodPos) => _$this._currentPeriodPos = currentPeriodPos;
 
   bool _isLoading;
+
   bool get isLoading => _$this._isLoading;
+
   set isLoading(bool isLoading) => _$this._isLoading = isLoading;
 
   DateBarChartVmBuilder();

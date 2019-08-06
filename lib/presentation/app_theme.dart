@@ -34,10 +34,6 @@ class ThemeUtils {
           overline: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300, color: Colors.black38),
         ));
   }
-
-
-
-
 }
 
 class BHColor {

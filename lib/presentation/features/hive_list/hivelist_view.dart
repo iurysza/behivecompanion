@@ -25,7 +25,7 @@ class HiveListView extends StatelessWidget {
                   subtitle: item.name,
                   pictureUrl: item.pictureUrl ?? "",
                   onTap: () {
-                    Navigator.pushNamed(context, RoutePaths.Statistics,arguments: item.id);
+                    Navigator.pushNamed(context, RoutePaths.Statistics, arguments: item.id);
                   },
                 );
               },

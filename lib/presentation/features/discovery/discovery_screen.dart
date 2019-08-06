@@ -2,7 +2,6 @@ import 'package:behivecompanion/helper/color.dart';
 import 'package:behivecompanion/presentation/features/discovery/indicator.dart';
 import 'package:behivecompanion/presentation/features/discovery/most_popular_groups_tab.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -71,7 +70,6 @@ class Discovery extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          dragStartBehavior: DragStartBehavior.down,
           children: <Widget>[
             MostPopularTab(),
             Container(

@@ -10,7 +10,6 @@ import 'package:behivecompanion/data/repositories/statistics/statistics_reposito
 import 'package:behivecompanion/presentation/features/statistics/bar_chart/period_generator.dart';
 import 'package:provider/provider.dart';
 
-
 List<SingleChildCloneableWidget> actualServices = [
   Provider<AuthRepository>.value(value: AuthRepositoryImpl()),
   Provider<StatisticsRepository>.value(value: StatisticsRepositoryImpl()),
@@ -23,10 +22,8 @@ List<SingleChildCloneableWidget> mockedServices = [
   Provider<HiveRepository>.value(value: HiveRepositoryMock()),
   Provider<PeriodGenerator>.value(value: PeriodGenerator()),
   Provider<StatisticsRepository>.value(value: StatisticsRepositoryMock()),
-
 ];
 //
-
 
 List<SingleChildCloneableWidget> providers = [
   ...actualServices,

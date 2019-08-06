@@ -4,6 +4,7 @@ class CategoryWidget extends StatelessWidget {
   final String category;
 
   const CategoryWidget(this.category);
+
   @override
   Widget build(BuildContext context) {
     final style = Theme.of(context).textTheme;
@@ -14,7 +15,7 @@ class CategoryWidget extends StatelessWidget {
         child: Text(
           category,
           overflow: TextOverflow.ellipsis,
-          style: style.body1.copyWith(fontSize: 12,color: Colors.white),
+          style: style.body1.copyWith(fontSize: 12, color: Colors.white),
         ),
         padding: const EdgeInsets.symmetric(
           vertical: 4,

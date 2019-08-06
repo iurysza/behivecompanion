@@ -54,8 +54,10 @@ class _MD2Painter extends BoxPainter {
     painter.style = PaintingStyle.fill;
     canvas.drawRRect(
         RRect.fromRectAndCorners(rect,
-            bottomRight: Radius.circular(8), bottomLeft: Radius.circular(8),
-            topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+            bottomRight: Radius.circular(8),
+            bottomLeft: Radius.circular(8),
+            topRight: Radius.circular(8),
+            topLeft: Radius.circular(8)),
         painter);
   }
 }
