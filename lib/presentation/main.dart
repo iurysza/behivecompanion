@@ -16,7 +16,7 @@ Future main() async {
   await servicesController.initParse();
 
   runApp(
-    MyApp(await Router.getInitialRoute(servicesController.parseController.isLoggedIn)),
+    MyApp(/*await Router.getInitialRoute(servicesController.parseController.isLoggedIn)*/RoutePaths.Discovery),
   );
 }
 

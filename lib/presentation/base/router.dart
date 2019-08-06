@@ -1,4 +1,5 @@
 import 'package:behivecompanion/data/services/services_controller.dart';
+import 'package:behivecompanion/presentation/features/discovery/discovery_screen.dart';
 import 'package:behivecompanion/presentation/features/hive_list/hivelist_view.dart';
 import 'package:behivecompanion/presentation/features/login/login_view.dart';
 import 'package:behivecompanion/presentation/features/onboarding/onboarding_view.dart';
@@ -30,6 +31,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => StatisticsView(settings.arguments as String));
       case RoutePaths.HiveList:
         return MaterialPageRoute(builder: (_) => HiveListView());
+      case RoutePaths.Discovery:
+        return MaterialPageRoute(builder: (_) => Discovery());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
@@ -45,5 +48,6 @@ class RoutePaths {
   static const String Login = 'login';
   static const String Onboarding = 'onboarding';
   static const String HiveList = 'hivelist';
+  static const String Discovery = 'discovery';
   static const String Statistics = 'statistics';
 }
